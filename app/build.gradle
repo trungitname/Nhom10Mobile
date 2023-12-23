@@ -1,0 +1,54 @@
+plugins {
+	id 'org.jetbrains.kotlin.android' version '1.8.10'
+	id 'com.android.application'
+}
+
+android {
+	compileSdkVersion 34
+	buildToolsVersion '34.0.0'
+	useLibrary 'org.apache.http.legacy'
+	namespace 'org.nuclearfog.apollo'
+
+	defaultConfig {
+		applicationId 'org.nuclearfog.apollo'
+		minSdkVersion 16
+		targetSdkVersion 34
+		versionCode 30
+		versionName '1.4'
+	}
+
+	buildTypes {
+		release {
+			debuggable false
+			minifyEnabled true
+			shrinkResources true
+			multiDexEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+		}
+		debug {
+			applicationIdSuffix '.debug'
+			versionNameSuffix 'd'
+		}
+	}
+	packagingOptions {
+		jniLibs {
+			excludes += ['/META-INF/androidx.*', '/META-INF/kotlin*', '/META-INF/com.*', '/META-INF/services/**', '/META-INF/com/**', '/kotlin/**', '/Debug*']
+		}
+		resources {
+			excludes += ['/META-INF/CHANGES', '/META-INF/DEPENDENCIES', '/META-INF/README.md', '/META-INF/androidx.*', '/META-INF/kotlin*', '/META-INF/com.*', '/META-INF/services/**', '/META-INF/com/**', '/kotlin/**', '/Debug*']
+		}
+	}
+
+
+	buildFeatures {
+		aidl true
+	}
+}
+
+dependencies {
+	implementation 'androidx.appcompat:appcompat:1.6.1'
+	implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+	implementation 'androidx.preference:preference:1.2.1'
+	implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+	implementation 'androidx.media:media:1.6.0'
+}
